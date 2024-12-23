@@ -15,7 +15,7 @@ static list* createNode(void)
 {
     list *newItem;
     newItem = (list*)malloc(sizeof(list));
-    printf("Enter the item value\n");
+    printf("Enter the item value\n\r");
     scanf("%d", &newItem->n);
     return(newItem);
 };
@@ -45,14 +45,15 @@ void display (void)
 {
     if(listPtr == NULL)
     {
-        printf("List is empty, cannot delete");
+        printf("List is empty, cannot delete\n\r");
     }
     else
     {
-        list *start = listPtr;
-        while(start != NULL) // it should not be start->next, it will not print the last node
+      list *start = listPtr;
+      printf("The list is\n\r");
+      while(start != NULL) // it should not be start->next, it will not print the last node
       {
-        printf("%d ",start->n);
+        printf("%d \n\r",start->n);
         start = start->next;
       }
     }
@@ -61,7 +62,7 @@ void deleteFromStart(void)
 {
   if(listPtr == NULL)
   {
-      printf("List is empty, cannot delete");
+      printf("List is empty, cannot delete\n\r");
   }
   else
   {
@@ -77,13 +78,14 @@ void deleteFromStart(void)
           listPtr = listPtr->next;
           free(start);
       }
+      printf("Deleted node\n\r");
   }
 }
 void deleteFromEnd(void)
 {
   if(listPtr == NULL)
   {
-      printf("List is empty, cannot delete");
+    printf("List is empty, cannot delete\n\r");
   }
   else
   {
@@ -103,6 +105,7 @@ void deleteFromEnd(void)
           free(start->next);
           start->next = NULL;
       }
+      printf("Deleted node\n\r");
   }
 }
 int main()
@@ -110,19 +113,27 @@ int main()
     int n ;
     while(1)
     {
-        printf("Enter 1 to insert node at end, 2 to display list, and 3 to exit\n\r");
+        printf("Enter 1 to insert node at end\n\rEnter 2 to display list\n\rEnter 3 to Delete from End\n\rEnter 4 to Delete from Start\n\rEnter 5 to exit\n\r");
         scanf("%d", &n);
         if(n == 1)
         {
-          instertAtEnd();
+           instertAtEnd();
         }
         else if(n == 2)
         {
-          display();
+           display();
         }
+       else if(n == 3)
+       {
+           deleteFromEnd();
+       }
+       else if(n == 4)
+       {
+           deleteFromStart();
+       }
        else
        {
-          break;
+           break;
        }
     }
 
